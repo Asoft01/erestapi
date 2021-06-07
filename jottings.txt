@@ -1,0 +1,20 @@
+composer require "laravel/homestead=~5.1"
+
+config\app.php
+
+The web.php and api.php are mapped in app\Providers\RouteServiceProvider.php
+
+php artisan make:model Buyer
+php artisan make:model Seller
+php artisan make:model Category -m
+php artisan make:model Product -m 
+php artisan make:model Transaction -m 
+php artisan make:controller User/UserController -r
+
+
+The character set under the database.php is upgraded from utf8 to utf8mb4 in order to support some characters sets and emoticons in the database 
+hence upgrading it in Schema::defaultStringLength(191) because mysql only supports 767 
+'charset' => 'utf8mb4',
+
+This calculation can be done by multiplying 255*4 = 1040,
+767/4 = 191 for utf8mb4
