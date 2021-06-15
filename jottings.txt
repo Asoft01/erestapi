@@ -11,6 +11,8 @@ php artisan make:model Product -m
 php artisan make:model Transaction -m 
 php artisan make:controller User/UserController -r
 
+php artisan make:migration --help
+
 
 The character set under the database.php is upgraded from utf8 to utf8mb4 in order to support some characters sets and emoticons in the database 
 hence upgrading it in Schema::defaultStringLength(191) because mysql only supports 767 
@@ -18,3 +20,16 @@ hence upgrading it in Schema::defaultStringLength(191) because mysql only suppor
 
 This calculation can be done by multiplying 255*4 = 1040,
 767/4 = 191 for utf8mb4
+
+php artisan make:migration category_product_table --create=category_product
+
+php artisan migrate:refresh --seed
+
+database\seeds\DatabaseSeeder.php
+
+php artisan migrate:refresh --seed
+
+
+
+//////////////// In order to use the category model (Implicit Model Binding) /////////////////////
+php artisan make:controller Category/CategoryController -r -m Category

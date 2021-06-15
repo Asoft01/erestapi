@@ -7,11 +7,15 @@ use App\Seller;
 use App\Transaction;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
+    use SoftDeletes;
     const AVAILABLE_PRODUCT = 'available';
     const UNAVAILABLE_PRODUCT = 'unavailable';
+
+    protected $dates = ['deleted_at'];
     protected $fillable = [
         'name', 
         'description',
@@ -34,7 +38,7 @@ class Product extends Model
     }
 
     public function categories(){
-        return $this->belongsTo(Category::class);
+        return $this->belongsToMany(Category::class);
     }
 
 }
