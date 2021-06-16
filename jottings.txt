@@ -33,3 +33,5 @@ php artisan migrate:refresh --seed
 
 //////////////// In order to use the category model (Implicit Model Binding) /////////////////////
 php artisan make:controller Category/CategoryController -r -m Category
+
+php artisan make:controller Category/CategoryProductController -r -m Category
