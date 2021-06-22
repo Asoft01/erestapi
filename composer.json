@@ -9,8 +9,9 @@
         "fideloper/proxy": "~3.3",
         "laravel/framework": "5.4.*",
         "laravel/homestead": "~5.1",
-        "laravel/passport": "^2.0",
-        "laravel/tinker": "~1.0"
+        "laravel/tinker": "~1.0",
+        "guzzlehttp/guzzle": "^4.2.4",
+        "spatie/laravel-fractal": "^3.5"
     },
     "require-dev": {
         "filp/whoops": "~2.0",

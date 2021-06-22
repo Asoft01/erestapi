@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'Restful API'),
 
     /*
     |--------------------------------------------------------------------------
@@ -167,6 +167,8 @@ return [
         /*
          * Package Service Providers...
          */
+        Laravel\Tinker\TinkerServiceProvider::class,
+        Spatie\Fractal\FractalServiceProvider::class,
 
         /*
          * Application Service Providers...

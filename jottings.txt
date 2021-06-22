@@ -35,3 +35,29 @@ php artisan migrate:refresh --seed
 php artisan make:controller Category/CategoryController -r -m Category
 
 php artisan make:controller Category/CategoryProductController -r -m Category
+
+I use bellow code in composer.json and it works.
+
+ "guzzlehttp/guzzle": "^4.2.4",
+
+then comoser update
+
+
+        "laravel/passport": "^2.0",
+
+check mail.php and services.php and configure the .env file
+
+php artisan make:mail UserCreated
+
+
+Everytime you change your .env file, you need tor restart the server for the new options to take effect.
+
+Or clear and cache your configuration with
+
+php artisan config:cache
+
+php artisan make:mail Test -m emails.test
+
+php artisan make:middleware Signaturemiddleware
+
+composer require spatie/laravel-fractal 4.5.0

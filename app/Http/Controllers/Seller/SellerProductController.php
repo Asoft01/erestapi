@@ -8,6 +8,7 @@ use App\Http\Controllers\ApiController;
 use App\Product;
 use App\User;
 use Illuminate\Foundation\Testing\HttpException;
+use Illuminate\Support\Facades\Storage;
 
 class SellerProductController extends ApiController
 {
@@ -42,7 +43,8 @@ class SellerProductController extends ApiController
         $data= $request->all();
 
         $data['status']= Product::UNAVAILABLE_PRODUCT;
-        $data['image'] = '1.jpg';
+        // $data['image'] = '1.jpg';
+        $data['image'] = $request->image->store('');
         $data['seller_id'] = $seller->id;
 
         $products = Product::create($data);
@@ -83,6 +85,12 @@ class SellerProductController extends ApiController
             }
         }
 
+        if($request->hasFile('image')){
+            Storage::delete($product->image);
+
+            $product->image = $request->image->store('');
+        }
+
         if($product->isClean()){
             return $this->errorResponse('You need to specify a different value to update', 422);
         }
@@ -103,6 +111,9 @@ class SellerProductController extends ApiController
         $this->checkSeller($seller, $product);
 
         $product->delete();
+        
+        // The storage facades allows us to easily manage files 
+        Storage::delete($product->image);
 
         return $this->showOne($product);
     }
