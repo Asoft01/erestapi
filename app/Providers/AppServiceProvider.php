@@ -6,9 +6,11 @@ use App\Mail\UserCreated;
 use App\Mail\UserMailChanged;
 use App\Product;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Passport\Passport;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -47,6 +49,15 @@ class AppServiceProvider extends ServiceProvider
         });
 
 
+        Passport::routes();
+        Passport::tokensExpireIn(Carbon::now()->addMinutes(30));
+        Passport::refreshTokensExpireIn(Carbon::now()->addDays(30));
+
+        if (config('app.debug')) {
+            error_reporting(E_ALL & ~E_USER_DEPRECATED);
+        } else {
+            error_reporting(0);
+        }
 
     }
 

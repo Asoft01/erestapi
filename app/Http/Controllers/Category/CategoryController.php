@@ -13,9 +13,16 @@ class CategoryController extends ApiController
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('client.credentials')->only(['index', 'show']);
+    }
+    
     public function index()
     {
         $categories = Category::all();
+        // $categories = Category::paginate();
         return $this->showAll($categories);
     }
 

@@ -14,6 +14,13 @@ class ProductCategoryController extends ApiController
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middlware('client.credentials')->only(['index']);
+        $this->middlware('auth:api')->except(['index']);
+    }
+    
     public function index(Product $product)
     {
         $categories = $product->categories;

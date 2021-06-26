@@ -15,14 +15,19 @@ class UserController extends ApiController
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('client.credentials')->only(['store', 'resend']);
+        $this->middleware('auth:api')->except(['store', 'verify', 'resend']);
+    }
+    
     public function index()
     {
         $users = User::all();
 
         // return response()->json(['data' => $users], 200);
         return $this->showAll($users);
-
-
         // return $users;
     }
 

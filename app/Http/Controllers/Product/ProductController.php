@@ -7,11 +7,17 @@ use App\Product;
 
 class ProductController extends ApiController
 {
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('client.credentials')->only(['index', 'show']);
+    }
+
     public function index()
     {
         $products = Product::all();

@@ -13,6 +13,11 @@ class TransactionCategoryController extends ApiController
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middlware('client.credentials')->only(['index']);
+    }
+    
     public function index(Transaction $transaction)
     {
         $categories = $transaction->product->categories;

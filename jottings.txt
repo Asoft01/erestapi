@@ -61,3 +61,27 @@ php artisan make:mail Test -m emails.test
 php artisan make:middleware Signaturemiddleware
 
 composer require spatie/laravel-fractal 4.5.0
+
+php artisan vendor:publish --provider="Spatie\Fractal\FractalServiceProvider" --tag="migrations"
+php artisan vendor:publish --provider="Laravel\Tinker\TinkerServiceProvider" --tag="migrations"
+
+The below code can be found in illuminate router
+
+// Authentication Routes...
+$this->get('login', 'Auth\LoginController@showLoginForm')->name('login');
+$this->post('login', 'Auth\LoginController@login');
+$this->post('logout', 'Auth\LoginController@logout')->name('logout');
+
+// Registration Routes...
+$this->get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+$this->post('register', 'Auth\RegisterController@register');
+
+// Password Reset Routes...
+$this->get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+$this->post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+$this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+$this->post('password/reset', 'Auth\ResetPasswordController@reset');
+
+
+
+php artisan passport:client
